@@ -31,8 +31,6 @@ class template_1(discord.ui.Modal, title ='Meeting Announcement'):
                                                 > _Channel_: <#{final_channel_id}>\
                                                 \n-----------------------------\n{final_result}', ephemeral=False)
 
-
-# 繼承 commands.Cog 的類別
 class Modal_1(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
