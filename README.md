@@ -1,5 +1,4 @@
 # Discord-Bot
-Project Abssy Discord Bot
 ## Background (專案概述)
 根據甲方所提供的七個公告範本，製作出一可套用特定模板並發送公告的 Discord 公告機器人。
 
