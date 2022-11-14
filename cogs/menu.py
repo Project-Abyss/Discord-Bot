@@ -1,12 +1,14 @@
 import discord
 from discord.ext import commands
-from .SurveyModal_1 import template_1
-from .SurveyModal_2 import template_2
-from .SurveyModal_3 import template_3
-from .SurveyModal_4 import template_4
-from .SurveyModal_5 import *
-from .SurveyModal_6 import template_6
-from .SurveyModal_7 import template_7
+from discord.ui import Button, View
+
+from .Meeting_Announcement_1 import template_1
+from .Meeting_Announcement_2 import template_2
+from .Announcement import template_3
+from .foreign_courses import template_4
+from .Internal_courses import *
+from .Resource_storage import template_6
+from .Facebook_post import template_7
 
 class Select(discord.ui.Select):
     def __init__(self):
@@ -20,10 +22,11 @@ class Select(discord.ui.Select):
             discord.SelectOption(label="FaceBook 貼文發表",emoji="7️⃣",description="時間")       
             ]
         super().__init__(placeholder="Choose an announcement template.",max_values=1,min_values=1,options=options)
-
+    # callback
     async def callback(self, interaction: discord.Interaction):
         user = interaction.user
         guild = interaction.guild
+        ## update this
         if self.values[0] == "Meeting Announcement 1":
             await interaction.response.send_modal(template_1())
         elif self.values[0] == "Meeting Announcement 2":
@@ -54,19 +57,22 @@ class Menu(commands.Cog):
 
     @commands.command()
     async def menu(self, ctx):
-        await ctx.message.delete()
         await ctx.send("Select announcement",view=SelectView(), delete_after=10)
-    
+        await ctx.message.delete()
 
     @commands.Cog.listener()
     async def on_message(self, message):
         if "【Facebook 貼文發表】" in message.content:
             await message.create_thread(name = "【Facebook 貼文發表】", auto_archive_duration=60, slowmode_delay=None, reason=None)
+
         if "【對內課程公告】" in message.content:
-            message_id = message.id
-            await message.create_thread(name = "【對內課程公告】", auto_archive_duration=60, slowmode_delay=None, reason=None)
-            thread = message.channel.get_thread(message_id)
-            await thread.send("這周有 This 15 Speech 嗎？ \n(Yes or No)",  delete_after=60)
-                    
+            button = Button(label = " 有 ",style=discord.ButtonStyle.green)
+            async def button_callback(interaction):
+                await interaction.response.send_modal(who_is_the_lucky_guy())
+            button.callback = button_callback
+            view = View()
+            view.add_item(button)
+            await message.channel.send("這週有 15 Speech 的人嗎？", view=view, delete_after=20)
+
 async def setup(bot):
     await bot.add_cog(Menu(bot))
