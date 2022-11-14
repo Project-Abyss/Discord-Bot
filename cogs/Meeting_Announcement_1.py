@@ -2,9 +2,9 @@ import discord
 from discord.ext import commands
 
 class template_1(discord.ui.Modal, title ='Meeting Announcement'):
-    meeting_time = discord.ui.TextInput(label = 'Time')
-    meeting_channel = discord.ui.TextInput(label = 'Channel')
-    content = discord.ui.TextInput(label='Content', style = discord.TextStyle.paragraph)
+    meeting_time = discord.ui.TextInput(label = 'Time', placeholder='Nov. 14th, 2022(Mon.) 00:00~23:59')
+    meeting_channel = discord.ui.TextInput(label = 'Channel', placeholder='請輸入頻道全名')
+    content = discord.ui.TextInput(label='Content', placeholder='主要內容與附屬內容間隔「四個空格」', style = discord.TextStyle.paragraph)
     async def on_submit(self, interaction: discord.Interaction):
         # content
         content_str = str(self.content)
@@ -27,7 +27,20 @@ class template_1(discord.ui.Modal, title ='Meeting Announcement'):
         for channel in guild.channels:
             if str(self.meeting_channel) == channel.name:
                 final_channel_id = channel.id   
-        await interaction.response.send_message(f' **【Meeting Announcement】**\n> _Time_: {self.meeting_time}\n\
+        # time
+        time = str(self.meeting_time)
+        re_time = []
+        time_split = time.split(" ")
+        for i in range(len(time_split)-1):
+            normal = time_split[i]
+            re_time.append(normal)
+        for j in range(len(time_split)):
+            italic = time_split[-1]
+            italic_edit = "_"+ str(italic)+"_"
+        re_time.append(italic_edit)
+        final_time = " ".join(str(i) for i in re_time) 
+
+        await interaction.response.send_message(f' **【Meeting Announcement】**\n> _Time_: {final_time}\n\
                                                 > _Channel_: <#{final_channel_id}>\
                                                 \n-----------------------------\n{final_result}', ephemeral=False)
 
