@@ -39,7 +39,7 @@ class who_is_the_lucky_guy(discord.ui.Modal, title ='This 15 Speech'):
         for member in guild.members:
             if str(self.fifteen_speech) == member.name:
                 self.final_member_id = member.id
-        await interaction.response.send_message(f'> This 15 Speech: <@{self.final_member_id}>', ephemeral=False, delete_after=5)
+        await interaction.response.send_message(f'> This 15 Speech: <@{self.final_member_id}>', ephemeral=False)
 
 class Modal_5(commands.Cog, template_5, who_is_the_lucky_guy):
     def __init__(self, bot):
@@ -50,15 +50,5 @@ class Modal_5(commands.Cog, template_5, who_is_the_lucky_guy):
         if "This 15 Speech" in message.content:
             self.channel_id = template_5.final_result
             self.lucky_guy = who_is_the_lucky_guy.final_member_id
-
-            guild =self.bot.guild
-            for member in guild.members:
-                if str(self.lucky_guy) == member.name:
-                    self.final_member = member.id
-
-            message_id = self.channel_id
-            await message.create_thread(name = "【對內課程公告】", auto_archive_duration=60, slowmode_delay=None, reason=None)
-            thread = message.channel.get_thread(message_id)
-            await thread.send(f"> This 15 Speech: <@{self.final_member}>")    
 async def setup(bot):
     await bot.add_cog(Modal_5(bot))
