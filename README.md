@@ -45,7 +45,7 @@
 ![image](https://user-images.githubusercontent.com/88641414/201670230-1c1659db-ccff-4715-b18c-3c2065bb2757.png)
  * 複製 **GENERATED URL** 產生的網址，到瀏覽器執行後，即可將機器人引入自己具有**管理權**的伺服器
 
-### 建立虛擬環境
+### 建立虛擬環境並安裝套件
 * 建立一資料夾，存放虛擬環境以及下載的 Discord Bot 相關檔案
   * 安裝 virtualenv
   ```
@@ -60,6 +60,10 @@
   * 在當前路徑執行 virtualenv
   ```
   <虛擬環境名稱>\Scripts\activate
+  ```
+  * 透過 requirements.txt 安裝所需套件
+  ```
+  pip install -r requirements.txt
   ```
 * 當前路徑如下所示：
 ```
