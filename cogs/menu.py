@@ -42,6 +42,7 @@ class Select(discord.ui.Select):
         elif self.values[0] == "FaceBook 貼文發表":
             await interaction.response.send_modal(template_7()) 
 
+
 class SelectView(discord.ui.View):
     def __init__(self, *, timeout = 30):
         super().__init__(timeout=timeout)
@@ -50,6 +51,8 @@ class SelectView(discord.ui.View):
 class Menu(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
+        # default delete time
+        self.sec = 60
 
     @commands.Cog.listener()
     async def on_ready(self):
@@ -57,8 +60,13 @@ class Menu(commands.Cog):
 
     @commands.command()
     async def menu(self, ctx):
-        await ctx.send("Select announcement",view=SelectView(), delete_after=10)
+        await ctx.send("Select announcement",view=SelectView(), delete_after=int(self.sec))
         await ctx.message.delete()
+
+    @commands.command()
+    async def time(self, ctx, msg):
+        await ctx.message.delete()
+        self.sec = msg
 
     @commands.Cog.listener()
     async def on_message(self, message):
@@ -72,7 +80,7 @@ class Menu(commands.Cog):
             button.callback = button_callback
             view = View()
             view.add_item(button)
-            await message.channel.send("這週有 15 Speech 的人嗎？", view=view, delete_after=20)
+            await message.channel.send("這週有 15 Speech 的人嗎？", view=view, delete_after=int(self.sec))
 
 async def setup(bot):
     await bot.add_cog(Menu(bot))
