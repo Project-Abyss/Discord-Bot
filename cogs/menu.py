@@ -5,7 +5,7 @@ from discord.ui import Button, View
 from .Meeting_Announcement_1 import template_1
 from .Meeting_Announcement_2 import template_2
 from .Announcement import template_3
-from .foreign_courses import template_4
+from .Foreign_courses import template_4
 from .Internal_courses import *
 from .Resource_storage import template_6
 from .Facebook_post import template_7
