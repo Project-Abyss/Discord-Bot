@@ -47,6 +47,7 @@
 │   
 ```
 ## Usage (如何使用)
+若不知道如何使用 Discord Developer Portal 創建機器人，可參考[文件](https://github.com/Project-Abyss/Discord-Bot/blob/main/create_discord_bot_application.md)
 ### 啟動機器人
 開啟虛擬環境後，在當前路徑執行 ```python main.py```，即可開啟機器人。
 ### 使用指令
