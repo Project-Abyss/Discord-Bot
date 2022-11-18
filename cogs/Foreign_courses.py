@@ -6,7 +6,7 @@ class template_4(discord.ui.Modal, title ='對外課程公告'):
     course_location = discord.ui.TextInput(label = '地點')
     course_title = discord.ui.TextInput(label = '課程名稱')
     course_lecturer = discord.ui.TextInput(label = '課程講師', placeholder='請填寫帳號全名')
-    course_slides_note = discord.ui.TextInput(label = '簡報筆記', placeholder='s <url>\nn <url>',style = discord.TextStyle.paragraph)
+    course_slides_note = discord.ui.TextInput(label = '簡報筆記 (簡報－ s <url> / 筆記－ n <url>)', style = discord.TextStyle.paragraph, default='s \nn ')
     async def on_submit(self, interaction: discord.Interaction):
         slide_and_note =str(self.course_slides_note)
         result = []
