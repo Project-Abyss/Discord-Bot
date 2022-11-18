@@ -2,7 +2,7 @@ import discord
 from discord.ext import commands
 
 class template_7(discord.ui.Modal, title='FaceBook 貼文發表'):
-    post_time = discord.ui.TextInput(label = 'Time)', placeholder="Nov. 6th, 2022(Sun.)Nov. 12th. 2022(Sat.)")
+    post_time = discord.ui.TextInput(label = 'Time', placeholder="Nov. 6th, 2022(Sun.)~Nov. 12th. 2022(Sat.)")
     async def on_submit(self, interaction: discord.Interaction):
         await interaction.response.send_message(f' **【Facebook 貼文發表】**\n．Time: {self.post_time}', ephemeral=False)
 
