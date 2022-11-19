@@ -29,4 +29,4 @@
   * 允許提及伺服器內部成員
   
 ![image](https://user-images.githubusercontent.com/88641414/201670230-1c1659db-ccff-4715-b18c-3c2065bb2757.png)
- * 複製 **GENERATED URL** 產生的網址，到瀏覽器執行後，即可將機器人引入自己具有**管理權**的伺服器
+ * 複製 **GENERATED URL** 產生的網址，到瀏覽器執行後，即可將機器人引入自己具有**管理權**的伺服器。
