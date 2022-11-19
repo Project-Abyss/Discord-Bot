@@ -12,7 +12,7 @@ class template_6(discord.ui.Modal, title='遺忘書目'):
                                                 \n難度：{self.level}\
                                                 \n@{self.url}\n\
                                                 \n{self.content}\n\
-                                                \n#{self.field}', ephemeral=False)
+                                                \n{self.field}', ephemeral=False)
 
 class Modal_6(commands.Cog):
     def __init__(self, bot):
