@@ -24,13 +24,13 @@ async def ping(ctx):
 	await ctx.send(f'{round(bot.latency*1000)}(ms)')
 
 
-@bot.event
-async def on_message(message):
-    await bot.process_commands(message)
-    if message[0] == '>':
-        return
-    if message.author == bot.user:
-        return
+# @bot.event
+# async def on_message(message):
+#     await bot.process_commands(message)
+#     if message[0] == '>':
+#         return
+#     if message.author == bot.user:
+#         return
     
 # Close the bot
 @bot.command(aliases=["quit"])
