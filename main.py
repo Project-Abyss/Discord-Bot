@@ -8,9 +8,9 @@ TOKEN = os.getenv('TOKEN')
 
 bot = commands.Bot(command_prefix='>',intents = discord.Intents.all())
 
-for guild in bot.guilds:
-    for text_ch in guild.text_channels:
-        pass
+# for guild in bot.guilds:
+#     for text_ch in guild.text_channels:
+#         pass
         # print(text_ch.id)
         
 @bot.event
