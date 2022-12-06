@@ -1,53 +1,30 @@
-import discord, os
-import asyncio
-from discord.ext import commands
+import os
+import discord
 from dotenv import load_dotenv
-load_dotenv()
+from discord.ext import commands
 
+load_dotenv()
 TOKEN = os.getenv('TOKEN')
 
-bot = commands.Bot(command_prefix='>',intents = discord.Intents.all())
+bot = commands.Bot(command_prefix='!', intents=discord.Intents.all())
 
-# for guild in bot.guilds:
-#     for text_ch in guild.text_channels:
-#         pass
-        # print(text_ch.id)
-        
 @bot.event
 async def on_ready():
-    print('Online.')
-    # channel = bot.get_channel(int(LOBBY_CHANNEL))    
-    # await channel.send("早安您好，小機器人上線啦", delete_after=10)
+    print(f'{bot.user.name} has connected to Discord!')
 
-@bot.command()
+@bot.event
+async def menu_templates():
+    initial_extensions = ['cogs.Announcement', 'cogs.Facebook_post', 'cogs.Foreign_courses', 'cogs.Internal_courses', 'cogs.Meeting_Announcement_1', 'cogs.Meeting_Announcement_2', 'cogs.Resource_storage', 'cogs.menu']
+    for extension in initial_extensions:
+        await bot.load_extension(extension)
+
+@bot.command(name='ping')
 async def ping(ctx):
-	await ctx.send(f'{round(bot.latency*1000)}(ms)')
-
-
-# @bot.event
-# async def on_message(message):
-#     await bot.process_commands(message)
-#     if message[0] == '>':
-#         return
-#     if message.author == bot.user:
-#         return
-    
-# Close the bot
-@bot.command(aliases=["quit"])
-@commands.has_permissions(administrator=True)
+    await ctx.send(f'{round(bot.latency*1000)}(ms)')
+            
+@bot.command(name='quit')
 async def close(ctx):
     await ctx.message.delete()
     await bot.close()
 
-@bot.event
-async def load():
-    for filename in os.listdir('./cogs'):
-        if filename.endswith('.py'):
-            await bot.load_extension(f'cogs.{filename[:-3]}')
-            
-async def main(): 
-    await load()
-    await bot.start(TOKEN)
-
-asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
-asyncio.run(main())
+bot.run(TOKEN)
