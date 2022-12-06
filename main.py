@@ -3,20 +3,20 @@ import discord
 from dotenv import load_dotenv
 from discord.ext import commands
 
+from cogs.greetings import Greetings
+from cogs.example import Example
+
 load_dotenv()
 TOKEN = os.getenv('TOKEN')
 
 bot = commands.Bot(command_prefix='!', intents=discord.Intents.all())
 
+
 @bot.event
 async def on_ready():
     print(f'{bot.user.name} has connected to Discord!')
-
-@bot.event
-async def menu_templates():
-    initial_extensions = ['cogs.Announcement', 'cogs.Facebook_post', 'cogs.Foreign_courses', 'cogs.Internal_courses', 'cogs.Meeting_Announcement_1', 'cogs.Meeting_Announcement_2', 'cogs.Resource_storage', 'cogs.menu']
-    for extension in initial_extensions:
-        await bot.load_extension(extension)
+    await bot.load_extension('cogs.greetings')
+    await bot.load_extension('cogs.example')
 
 @bot.command(name='ping')
 async def ping(ctx):
