@@ -4,6 +4,7 @@ from dotenv import load_dotenv
 from discord.ext import commands
 from cogs.greetings import Greetings
 from cogs.drawlottery import DrawLottery
+from cogs.Poll_Function import Poll_Function
 
 
 load_dotenv()
@@ -17,6 +18,7 @@ async def on_ready():
     await bot.load_extension('cogs.greetings')
     await bot.load_extension('cogs.menu')
     await bot.load_extension('cogs.drawlottery')
+    await bot.load_extension('cogs.Poll_Function')
 
 @bot.command(name='ping')
 async def ping(ctx):
