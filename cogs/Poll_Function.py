@@ -31,6 +31,7 @@ class Poll_Function(commands.Cog):
 
             self.polls.append((msg.channel.id, msg.id))
 
+            timeLimit *= 60
             await asyncio.sleep(timeLimit)
 
             newmsg = await ctx.fetch_message(msg.id)
@@ -73,6 +74,7 @@ class Poll_Function(commands.Cog):
             for numberEmoji in numbersIcon[:len(options)]:
                 await msg.add_reaction(numberEmoji)
 
+            timeLimit *= 60
             await asyncio.sleep(timeLimit)
 
             newmsg = await ctx.fetch_message(msg.id)
