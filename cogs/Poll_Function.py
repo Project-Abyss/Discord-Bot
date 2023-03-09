@@ -13,7 +13,7 @@ class Poll_Function(commands.Cog):
     async def on_ready(self):
         print('Poll_Function cog loaded.')
 
-    @commands.command()
+    @commands.command(name='單票制投票', brief="\tparameter: (Poll_Title) (Time_Limit) (Options)！\n\t\t\t\t\t *Time_Limit Unit is Minutes ")
     async def SingleAnswer(self, ctx, descriptionMessage: str, timeLimit: int, *options):
         if len(options) > 10:
             await ctx.channel.send("The maximum of options are 10!")
@@ -58,7 +58,7 @@ class Poll_Function(commands.Cog):
                 if(not payload.member.bot and payload.member in users and reaction.emoji != payload.emoji.name):
                     await message.remove_reaction(reaction.emoji, payload.member)
 
-    @commands.command()
+    @commands.command(name='多票制投票', brief="\tparameter: (Poll_Title) (Time_Limit) (Options)！\n\t\t\t\t\t *Time_Limit Unit is Minutes ")
     async def MutiAnswer(self, ctx, descriptionMessage: str, timeLimit: int, *options):
         if len(options) > 10:
             await ctx.channel.send("The maximum of options are 10!")
