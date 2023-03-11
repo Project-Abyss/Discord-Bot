@@ -29,17 +29,4 @@ async def close(ctx):
     await ctx.message.delete()
     await bot.close()
 
-"""
-@bot.command(name='channel')
-async def channel(ctx):
-    voice_channel_list = ctx.guild.voice_channels
-    await ctx.send(f'{voice_channel_list}')		
-    # e.g. [<VoiceChannel id=1028862292495970319 name='開會區' rtc_region=None position=0 bitrate=64000 video_quality_mode=<VideoQualityMode.auto: 1> user_limit=0 category_id=1028862292495970317>]
-
-    for voice_channels in voice_channel_list:
-        await ctx.send(f'CHANNEL: {voice_channels}')		# e.g. voice_channels: 開會區
-        for member in voice_channels.members:
-            await ctx.send(f'MEMBER: {member}')
-"""
-
 bot.run(TOKEN)

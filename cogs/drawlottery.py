@@ -32,22 +32,7 @@ class DrawLottery(commands.Cog):
         await ctx.send(f'There are {self._amount_member} members in this channel ~')
         await ctx.send(f'Members: {self._list_member}')
 
-    """
-    @commands.command(name='依據頻道內成員抽籤', aliases=['member_v1'], brief="\t頻道內的所有人都逃不掉！\n\t\t\t\t\t【 範例：!member_v1 2 】")
-    async def draw_channel_lottery_member(self, ctx, amount: int):
-        for channel in self._list_channel:
-            await ctx.send(f'Draw {amount} lots on {channel.name} channel.')
-        
-        real_member_namelist = []
-        for i in range(len(self._list_member)):
-            real_member_namelist.append(str(self._list_member[i]))
-
-        result = random.sample(real_member_namelist, k=amount)
-        await ctx.send(f'公佈中籤名單：{result}')
-        #await ctx.send(f'==> {discord.utils.get(guild.roles, name="RD")}')
-    """
-
-    @commands.command(name='依據指定成員抽籤', aliases=['member_v2'], brief="\t被點到的人都逃不掉！\n\t\t\t\t\t【 範例：!member_v2 2 成員1 成員2 成員3】")
+    @commands.command(name='依據指定成員抽籤', aliases=['member'], brief="\n\t被點到的人都逃不掉！\n\t【 範例：!member_v2 2 成員1 成員2 成員3 】\n")
     async def draw_specific_lottery_member(self, ctx, amount: int, *users):
         all_members_list = []
         for user in users:
@@ -61,7 +46,7 @@ class DrawLottery(commands.Cog):
         result = random.sample(all_members_list, k=amount)
         await ctx.send(f'公佈中籤名單：{result}')
 
-    @commands.command(name='依據身份抽籤', aliases=['role'], brief="\t選擇多個身份組後，再抽簽！\n\t\t\t\t\t【 範例：!role 2 身份組1 身份組2 身份組3 】")
+    @commands.command(name='依據身份組抽籤', aliases=['role'], brief="\n\t選擇多個身份組後，再抽簽！\n\t【 範例：!role 2 身份組1 身份組2 身份組3 】\n")
     async def draw_lottery_role(self, ctx, amount: int, *roles):
         all_members_list = []
         for role in roles:
@@ -74,6 +59,28 @@ class DrawLottery(commands.Cog):
         
         await ctx.send(f'參與抽籤的成員：{all_members_list}')
 
+        result = random.sample(all_members_list, k=amount)
+        await ctx.send(f'公佈中籤名單：{result}')
+
+    @commands.command(name='依據指定成員或身份組抽籤', aliases=['mix'], brief="\n\t選擇多個指定成員或身份組後，再抽簽！\n\t【 範例：!mix 2 身份組1 成員1 成員2 身份組2 身份組3 成員3 】\n")
+    async def draw_lottery_member_and_role(self, ctx, amount: int, *somebody):
+        all_members_list = []
+        for sb in somebody:
+            if "<@&" in sb:
+                role_id = sb.replace('<@&', '').replace('>', '')
+                role_name = discord.utils.get(ctx.guild.roles, id=eval(role_id))
+                role_members = discord.utils.get(ctx.guild.roles, id=eval(role_id)).members
+                for m in role_members:
+                    if m.mention not in all_members_list:
+                        all_members_list.append(m.mention)
+            elif "<@" in sb:
+                user_id = sb.replace('<@', '').replace('>', '')
+                user_name = discord.utils.get(ctx.guild.members, id=eval(user_id))
+                if user_name.mention not in all_members_list:
+                    all_members_list.append(user_name.mention)
+
+        await ctx.send(f'參與抽籤的成員：{all_members_list}')
+        
         result = random.sample(all_members_list, k=amount)
         await ctx.send(f'公佈中籤名單：{result}')
 
