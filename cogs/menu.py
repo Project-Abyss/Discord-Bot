@@ -9,18 +9,20 @@ from .Foreign_courses import template_4
 from .Internal_courses import *
 from .Resource_storage import template_6
 from .Facebook_post import template_7
+from .drawlottery_member_and_role import draw_member_and_role
 
 class Select(discord.ui.Select):
     def __init__(self):
         options=[
+            discord.SelectOption(label="Draw Member & Role", emoji="😱", description="依據指定成員或身份組抽籤"),
             discord.SelectOption(label="Meeting Announcement 1",emoji="1️⃣",description="時間、頻道、備註"),
             discord.SelectOption(label="Meeting Announcement 2",emoji="2️⃣",description="時間、頻道、成員、備註"),
             discord.SelectOption(label="Announcement",emoji="3️⃣",description="備註"),
             discord.SelectOption(label="對外課程公告",emoji="4️⃣",description="時間、地點、課程名稱、課程講師、課程教材"),
             discord.SelectOption(label="對內課程公告",emoji="5️⃣",description="時間、地點、課程名稱、課程講師、課程教材、15 speech 講者"),
             discord.SelectOption(label="遺忘書目",emoji="6️⃣",description="難度、URL、概述、領域"),
-            discord.SelectOption(label="FaceBook 貼文發表",emoji="7️⃣",description="時間")       
-            ]
+            discord.SelectOption(label="FaceBook 貼文發表",emoji="7️⃣",description="時間")
+        ]
         super().__init__(placeholder="Choose an announcement template.",max_values=1,min_values=1,options=options)
     # callback
     async def callback(self, interaction: discord.Interaction):
@@ -40,7 +42,9 @@ class Select(discord.ui.Select):
         elif self.values[0] == "遺忘書目":
             await interaction.response.send_modal(template_6())
         elif self.values[0] == "FaceBook 貼文發表":
-            await interaction.response.send_modal(template_7()) 
+            await interaction.response.send_modal(template_7())
+        elif self.values[0] == "Draw Member & Role":
+            await interaction.response.send_modal(draw_member_and_role())
 
 
 class SelectView(discord.ui.View):
