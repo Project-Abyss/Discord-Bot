@@ -15,7 +15,7 @@ class DrawLottery(commands.Cog):
     async def on_ready(self):
         print('DrawLottery cog loaded.')
 
-    @commands.command(name='MembersInfo')
+    @commands.command(name='MembersInfo', aliases=['info'], brief="\n")
     async def members_info(self, ctx):
         real_member_count = 0
         real_member_list = []
