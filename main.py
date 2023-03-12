@@ -2,8 +2,8 @@ import os
 import discord
 from dotenv import load_dotenv
 from discord.ext import commands
+
 from cogs.greetings import Greetings
-from cogs.drawlottery import DrawLottery
 from cogs.Poll_Function import Poll_Function
 
 
