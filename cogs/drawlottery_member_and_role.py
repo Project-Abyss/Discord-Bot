@@ -15,7 +15,6 @@ class draw_member_and_role(discord.ui.Modal, title ='Draw Member & Role'):
         for sb in input_somebody_split:
             try:
                 user_name = discord.utils.get(guild.members, name=sb)
-                print(user_name)
                 if user_name.mention not in all_members_list:
                     all_members_list.append(user_name.mention)
             except:
@@ -27,8 +26,8 @@ class draw_member_and_role(discord.ui.Modal, title ='Draw Member & Role'):
 
         result = random.sample(all_members_list, k=eval(str(self.amount)))
         await interaction.response.send_message(f' **【Draw Member & Role】**\n \
-            > _Candidates_: {all_members_list}\n \
-            > _Result_: <#{result}>', ephemeral=False)
+            > **Candidates**: \n> {" ".join(all_members_list)}\n\n \
+            > **Result**: \n> {" ".join(result)}', ephemeral=False)
 
 
 class Modal_draw_member_and_role(commands.Cog, draw_member_and_role):
