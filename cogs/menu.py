@@ -10,6 +10,7 @@ from .Internal_courses import *
 from .Resource_storage import template_6
 from .Facebook_post import template_7
 from .drawlottery_member_and_role import draw_member_and_role
+from .PollFunction_Menu import PollMenu
 
 class Select(discord.ui.Select):
     def __init__(self):
@@ -22,6 +23,7 @@ class Select(discord.ui.Select):
             discord.SelectOption(label="對內課程公告",emoji="5️⃣",description="時間、地點、課程名稱、課程講師、課程教材、15 speech 講者"),
             discord.SelectOption(label="遺忘書目",emoji="6️⃣",description="難度、URL、概述、領域"),
             discord.SelectOption(label="FaceBook 貼文發表",emoji="7️⃣",description="時間")
+            discord.SelectOption(label="Make a Poll",emoji="8️⃣",description="建立多票制或單票制投票活動")
         ]
         super().__init__(placeholder="Choose an announcement template.",max_values=1,min_values=1,options=options)
     # callback
@@ -45,6 +47,8 @@ class Select(discord.ui.Select):
             await interaction.response.send_modal(template_7())
         elif self.values[0] == "Draw Member & Role":
             await interaction.response.send_modal(draw_member_and_role())
+        elif self.values[0] == "Make a Poll":
+            await interaction.response.send_modal(PollMenu())
 
 
 class SelectView(discord.ui.View):
