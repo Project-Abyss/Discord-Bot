@@ -1,6 +1,6 @@
 import discord
 from discord.ext import commands
-import datetime
+from datetime import datetime
 import asyncio
 
 numbersIcon =("1️⃣", "2️⃣", "3️⃣", "4️⃣", "5️⃣", "6️⃣", "7️⃣", "8️⃣", "9️⃣", "🔟")
@@ -21,12 +21,12 @@ class Poll_Function(commands.Cog):
     async def on_ready(self):
         print('Poll_Function cog loaded.')
 
-    @commands.command(name='SingleAnswer', brief="(Title) (Time) (Options)\n\tTime's Unit is Minutes.")
-    async def SingleAnswer(self, ctx, descriptionMessage: str, timeLimit: int, *options):
+    @commands.command(name='SingleAnswer', brief="(Title) (Date) (Time) (Options)\n\tTime's Unit is Minutes.")
+    async def SingleAnswer(self, ctx, descriptionMessage: str, dateLimit: str, timeLimit: str, *options):
         if len(options) > 10:
             await ctx.channel.send("The maximum of options are 10!")
         else:
-            emb = discord.Embed(title=f" POLL: {descriptionMessage}", color=ctx.author.color, timestamp=datetime.datetime.today())
+            emb = discord.Embed(title=f" POLL: {descriptionMessage}", color=ctx.author.color, timestamp=datetime.today())
             emb.set_footer(text=f"Poll by {ctx.author.name}")
             fields = [("OPTIONS", "\n".join([f"{numbersIcon[idx]} {option}" for idx, option in enumerate(options)]), False)]
             for name, value, inline in fields:
@@ -39,21 +39,36 @@ class Poll_Function(commands.Cog):
 
             self.polls.append((msg.channel.id, msg.id))
 
-            timeLimit *= 60
-            await asyncio.sleep(timeLimit)
+            dateLimit = datetime.strptime(dateLimit, "%Y-%m-%d")
+            timeLimit = datetime.strptime(timeLimit, "%H:%M:%S")
+            todayDateAndTime = datetime.today().strftime("%Y-%m-%d %H:%M:%S")
+            todayDateAndTime = str(todayDateAndTime).split()
+            todayDate = datetime.strptime(todayDateAndTime[0], "%Y-%m-%d")
+            todayTime = datetime.strptime(todayDateAndTime[1], "%H:%M:%S")
+            dateDelta = dateLimit - todayDate
+            timedelta = timeLimit - todayTime
+            timeUntilTheEndOfThePoll = (dateDelta.days*24*60*60) + (timedelta.seconds)
+            await asyncio.sleep(timeUntilTheEndOfThePoll)
 
             newmsg = await ctx.fetch_message(msg.id)
             reactionResult = []
+            index = 0
             for reactNum in newmsg.reactions:
                 choices = [choice async for choice in reactNum.users()]
                 choices = len(choices)
-                reactionResult.append(choices)
+                optionTitle = str(options[index])
+                reactionResult.append(PollResult(optionTitle, choices))
+                if index != len(options):
+                    index += 1
+            reactionResult.sort(key=lambda x: x.optionPollResult, reverse=True)
 
-            resultIndex = [indx for indx, item in enumerate(reactionResult) if item == max(reactionResult)]
-            result = []
-            for indx in resultIndex:
-                result.append(options[indx])
-            emb = discord.Embed(title=f" POLL: {descriptionMessage}", description=f"最高票數：{result}", color=ctx.author.color, timestamp=datetime.datetime.today())
+            singlePollResult = []
+            for item in reactionResult: 
+                if item.optionPollResult == reactionResult[0].optionPollResult:
+                    singlePollResult.append(item.optionDescription)
+            singlePollResult = " ".join(str(i) for i in singlePollResult)
+            
+            emb = discord.Embed(title=f" POLL: {descriptionMessage}", description=f"最高票數：{singlePollResult}", color=ctx.author.color, timestamp=datetime.today())
             await newmsg.edit(embed=emb)
 
     @commands.Cog.listener()
@@ -66,12 +81,12 @@ class Poll_Function(commands.Cog):
                 if(not payload.member.bot and payload.member in users and reaction.emoji != payload.emoji.name):
                     await message.remove_reaction(reaction.emoji, payload.member)
 
-    @commands.command(name='MutiAnswer', brief="(Title) (Time) (Options)\n\tTime's Unit is Minutes.")
-    async def MutiAnswer(self, ctx, descriptionMessage: str, timeLimit: int, *options):
+    @commands.command(name='MutiAnswer', brief="(Title) (Date) (Time) (Options)\n\tTime's Unit is Minutes.")
+    async def MutiAnswer(self, ctx, descriptionMessage: str, dateLimit: str, timeLimit: str, *options):
         if len(options) > 10:
             await ctx.channel.send("The maximum of options are 10!")
         else:
-            emb = discord.Embed(title=f" POLL: {descriptionMessage}", color=ctx.author.color, timestamp=datetime.datetime.today())
+            emb = discord.Embed(title=f" POLL: {descriptionMessage}", color=ctx.author.color, timestamp=datetime.today())
             emb.set_footer(text=f"Poll by {ctx.author.name}")
             fields = [("OPTIONS", "\n".join([f"{numbersIcon[idx]} {option}" for idx, option in enumerate(options)]), False)]
             for name, value, inline in fields:
@@ -81,9 +96,17 @@ class Poll_Function(commands.Cog):
 
             for numberEmoji in numbersIcon[:len(options)]:
                 await msg.add_reaction(numberEmoji)
-            await ctx.channel.send(datetime.datetime.today())
-            # timeLimit *= 60
-            await asyncio.sleep(timeLimit)
+
+            dateLimit = datetime.strptime(dateLimit, "%Y-%m-%d")
+            timeLimit = datetime.strptime(timeLimit, "%H:%M:%S")
+            todayDateAndTime = datetime.today().strftime("%Y-%m-%d %H:%M:%S")
+            todayDateAndTime = str(todayDateAndTime).split()
+            todayDate = datetime.strptime(todayDateAndTime[0], "%Y-%m-%d")
+            todayTime = datetime.strptime(todayDateAndTime[1], "%H:%M:%S")
+            dateDelta = dateLimit - todayDate
+            timedelta = timeLimit - todayTime
+            timeUntilTheEndOfThePoll = (dateDelta.days*24*60*60) + (timedelta.seconds)
+            await asyncio.sleep(timeUntilTheEndOfThePoll)
 
             newmsg = await ctx.fetch_message(msg.id)
             reactionResult = []
@@ -103,7 +126,7 @@ class Poll_Function(commands.Cog):
                 await ctx.channel.send(f"❖ 第 {pollResultRanking+1} 名｜" 
                                        + str(reactionResult[pollResultRanking].optionDescription) + "｜" 
                                        + str(reactionResult[pollResultRanking].optionPollResult) + " 票\n")
-            await ctx.channel.send("－－－－－")
+            await ctx.channel.send("\n")
                         
 
 async def setup(bot):
