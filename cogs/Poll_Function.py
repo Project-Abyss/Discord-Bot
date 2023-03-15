@@ -124,7 +124,7 @@ class Poll_Function(commands.Cog):
             pollResultRanking = 0
             for pollResultRanking in range(len(options)):
                 await ctx.channel.send(f"❖ 第 {pollResultRanking+1} 名 " 
-                                       + "**" str(reactionResult[pollResultRanking].optionDescription) + "** " 
+                                       + "**" + str(reactionResult[pollResultRanking].optionDescription) + "** " 
                                        + str(reactionResult[pollResultRanking].optionPollResult) + " 票\n")
             await ctx.channel.send("\n")
                         
