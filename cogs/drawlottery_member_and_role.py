@@ -25,10 +25,14 @@ class draw_member_and_role(discord.ui.Modal, title ='Draw Member & Role'):
                         all_members_list.append(m.mention)
 
         result = random.sample(all_members_list, k=eval(str(self.amount)))
+
+        msg = ""
+        for i, name in enumerate(result):
+            msg += "> 第 {} 個： {}\n".format(i+1, name)
+        print(msg)
         await interaction.response.send_message(f' **【Draw Member & Role】**\n \
             > **Candidates**: \n> {" ".join(all_members_list)}\n\n \
-            > **Result**: \n> {" ".join(result)}', ephemeral=False)
-
+            > **Result**: \n {msg}', ephemeral=False)
 
 class Modal_draw_member_and_role(commands.Cog, draw_member_and_role):
     def __init__(self, bot):
