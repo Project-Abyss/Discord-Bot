@@ -38,11 +38,12 @@
 ```
 !menu
 ```
+![image](https://user-images.githubusercontent.com/42068007/225680528-28a1ab55-ed66-434c-81d8-391cd30cecf8.png)
+![image](https://user-images.githubusercontent.com/42068007/225680846-d1127d83-5bae-455a-b30d-0680b0e6ad5e.png)
+![image](https://user-images.githubusercontent.com/42068007/225680890-c3281432-26f9-419b-a687-23e362db24ff.png)
+![image](https://user-images.githubusercontent.com/42068007/225680939-c3d65112-0187-4e84-b412-2406e38d60fc.png)
 
-![image](https://user-images.githubusercontent.com/42068007/225383582-0d1ffb8d-c80b-4497-a227-1c965fdcc716.png)
-![image](https://user-images.githubusercontent.com/42068007/225383719-ba45cd12-5887-4022-aba4-d7bd5a75326b.png)
-![image](https://user-images.githubusercontent.com/42068007/225383985-9f064448-992e-4615-a708-bea9ac3d9da7.png)
-![image](https://user-images.githubusercontent.com/42068007/225384136-6659fa18-dfb9-4925-9101-af1432db85c8.png)
+
 
 ---
 # 投票
