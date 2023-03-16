@@ -126,8 +126,6 @@ class Poll_Function(commands.Cog):
                 await ctx.channel.send(f"❖ 第 {pollResultRanking+1} 名｜" 
                                        + "**" + str(reactionResult[pollResultRanking].optionDescription) + "**｜" 
                                        + str(reactionResult[pollResultRanking].optionPollResult) + " 票\n")
-            await ctx.channel.send("\n")
-                        
 
 async def setup(bot):
     await bot.add_cog(Poll_Function(bot))
