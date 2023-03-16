@@ -120,7 +120,7 @@ class Poll_Function(commands.Cog):
                     index += 1
             reactionResult.sort(key=lambda x: x.optionPollResult, reverse=True)
 
-            await ctx.channel.send(f"> POLL: {descriptionMessage}\n> 票數排行榜\n-----------\n")
+            await ctx.channel.send(f"> POLL: {descriptionMessage}\n> 票數排行榜\n> -----------\n")
             pollResultRanking = 0
             for pollResultRanking in range(len(options)):
                 await ctx.channel.send(f"> ❖ 第 {pollResultRanking+1} 名｜" 
