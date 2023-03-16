@@ -113,7 +113,7 @@ class Poll_Function(commands.Cog):
             index = 0
             for reactNum in newmsg.reactions:
                 choices = [choice async for choice in reactNum.users()]
-                choices = len(choices)
+                choices = len(choices) - 1
                 optionTitle = str(options[index])
                 reactionResult.append(PollResult(optionTitle, choices))
                 if index != len(options):
@@ -123,8 +123,8 @@ class Poll_Function(commands.Cog):
             await ctx.channel.send(f"【{descriptionMessage}】\n票數排行榜\n-----------\n")
             pollResultRanking = 0
             for pollResultRanking in range(len(options)):
-                await ctx.channel.send(f"❖ 第 {pollResultRanking+1} 名 " 
-                                       + "**" + str(reactionResult[pollResultRanking].optionDescription) + "** " 
+                await ctx.channel.send(f"❖ 第 {pollResultRanking+1} 名｜" 
+                                       + "**" + str(reactionResult[pollResultRanking].optionDescription) + "**｜" 
                                        + str(reactionResult[pollResultRanking].optionPollResult) + " 票\n")
             await ctx.channel.send("\n")
                         
