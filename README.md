@@ -86,3 +86,10 @@
 [宋安琪 An-Chi Sung](https://github.com/Anzheim)@Abyss-TeamB (Author/Maintainer)
 
 [王筱鈞 Hsiao-Chun Wang](https://github.com/momo8042)@Abyss-TeamB (Author/Maintainer)
+
+[黃子軒 Tzu-Hsuan Huang](https://github.com/Nima-Huang)@Abyss-TeamA (Project Manager/Maintainer)
+
+[許至齊 Zhi-Qi Xu](https://github.com/xkeBANg)@Abyss-TeamA (Author/Maintainer)
+
+[黃丰嘉 Feng-Chia Huang](https://github.com/bessyhuang)@Abyss-TeamA (Author/Maintainer)
+
