@@ -12,7 +12,7 @@
 
 ## Installation (如何安裝)
 ### 要求環境
-* Python == 3.10.4
+* Python 3.X
 
 ### 建立虛擬環境並安裝套件
 * 建立一資料夾，存放虛擬環境以及下載的 Discord Bot 相關檔案
@@ -86,13 +86,7 @@
 * 「 User Interface 模式 」合併了**指定成員**和**身份組**兩種抽籤方式，並且藉由圖形化介面提供使用者輸入提示。
 * 「 Command 模式 」除了允許使用者**查詢頻道內的成員資訊**，還能夠依據**指定成員**、**身份組**以及**指定成員或身份組**三種指令模式進行抽籤，以下詳述之。
 
-### 1. User Interface Mode
-```
-!menu
-```
-<img src="https://user-images.githubusercontent.com/42068007/225680528-28a1ab55-ed66-434c-81d8-391cd30cecf8.png" width="500" height="400"> <img src="https://user-images.githubusercontent.com/42068007/225680846-d1127d83-5bae-455a-b30d-0680b0e6ad5e.png" width="500" height="400"> <img src="https://user-images.githubusercontent.com/42068007/225680890-c3281432-26f9-419b-a687-23e362db24ff.png" width="500" height="400"> <img src="https://user-images.githubusercontent.com/42068007/225680939-c3d65112-0187-4e84-b412-2406e38d60fc.png" width="500" height="350">
-
-### 2. Command Mode
+### 1. Command Mode
 #### 頻道內的成員資訊
 ```
     說明：查看頻道內成員的姓名與人數（不包括機器人）。
@@ -121,9 +115,18 @@
     【 範例：!mix 2 @RD @bessyhuang @PM 】
 ```
 
+### 2.User Interface Mode
+```
+選擇 【 Draw Member & Role 】 
+```
+* **Number of people**：輸入欲抽選之人數。
+* **Tag users & roles**：輸入欲參加抽籤之身分組或成員，並且以半形逗號 ',' 間隔。
+
+
+
 ---
 ## 投票 (Make a Poll)
-### Command Mode
+### 1. Command Mode
 此功能提供使用者針對不同議題進行投票表決，並分為**單票制**和**多票制**兩種投票制度，以下詳述之。
 #### 單票制指令
 ```
@@ -137,10 +140,13 @@
 ```
 * 投票結果會輸出成排行榜，並且以最高票依序列出
 
-### User Interface Mode
-若是無法準確記住參數的排序，這邊也提供了語法產生介面，
+### 2. User Interface Mode
+若是無法準確記住參數的排序，這邊也提供了**語法產生介面**，
 可以藉由 `!menu` 指令呼叫，並選擇 `Make a Poll` 選項，
 依照介面所提供的問題填寫，便能取得單票制或多票制的指令語法。
+```
+選擇 【 Make a Poll 】 
+```
 
 ---
 ## Contributing (專案貢獻)
