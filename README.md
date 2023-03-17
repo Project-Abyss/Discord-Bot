@@ -119,6 +119,7 @@
 ```
 選擇 【 Draw Member & Role 】 
 ```
+欄位說明：
 * **Number of people**：輸入欲抽選之人數。
 * **Tag users & roles**：輸入欲參加抽籤之身分組或成員，並且以半形逗號 ',' 間隔。
 
@@ -141,12 +142,16 @@
 * 投票結果會輸出成排行榜，並且以最高票依序列出
 
 ### 2. User Interface Mode
-若是無法準確記住參數的排序，這邊也提供了**語法產生介面**，
-可以藉由 `!menu` 指令呼叫，並選擇 `Make a Poll` 選項，
-依照介面所提供的問題填寫，便能取得單票制或多票制的指令語法。
+若是無法準確記住參數的排序，本功能提供**語法產生介面**，
+依照介面所提供的問題填寫，可取得單票制或多票制的指令語法。
 ```
 選擇 【 Make a Poll 】 
 ```
+欄位說明：
+* **Mutiple vote or Single vote**：選擇一人一票或一人多票 (Muti/Sing)。
+* **Poll title**：選擇投票活動之標題。
+* **The end date**：輸入投票結束時間 (yyyy-mm-dd hh:mm:ss)。
+* **Option title**：輸入投票選項 ( 以空格間隔 )。
 
 ---
 ## Contributing (專案貢獻)
