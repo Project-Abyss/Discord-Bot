@@ -74,8 +74,8 @@
 >    6. 遺忘書目
 >    7. FaceBook 貼文發表
 > * **小工具：**
->    1. 抽籤功能
->    2. 投票功能
+>    1. Draw Member & Role
+>    2. Make a Poll
 * 關閉機器人
 ```
 !quit
