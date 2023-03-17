@@ -81,7 +81,7 @@
 !quit
 ```
 ---
-## 抽籤
+## 抽籤 (Draw Member & Role)
 針對抽籤小工具，本團隊提供「 User Interface 」與「 Command 」兩種模式，提供予使用者選擇。
 * 「 User Interface 模式 」合併了**指定成員**和**身份組**兩種抽籤方式，並且藉由圖形化介面提供使用者輸入提示。
 * 「 Command 模式 」除了允許使用者**查詢頻道內的成員資訊**，還能夠依據**指定成員**、**身份組**以及**指定成員或身份組**三種指令模式進行抽籤，以下詳述之。
@@ -122,7 +122,7 @@
 ```
 
 ---
-## 投票
+## 投票 (Make a Poll)
 ### Command
 此功能提供使用者針對不同議題進行投票表決，並分為**單票制**和**多票制**兩種投票制度，以下詳述之。
 #### 單票制指令
@@ -143,7 +143,6 @@
 依照介面所提供的問題填寫，便能取得單票制或多票制的指令語法。
 
 ---
-
 ## Contributing (專案貢獻)
 ### Contributors
 [許雅喬 Ya-Chiao Hsu](https://github.com/Chiao52)@Abyss-TeamB (Project Manager/Maintainer)
