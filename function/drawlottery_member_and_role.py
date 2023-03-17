@@ -29,7 +29,7 @@ class draw_member_and_role(discord.ui.Modal, title ='Draw Member & Role'):
         msg = ""
         for i, name in enumerate(result):
             msg += "> 第 {} 個： {}\n".format(i+1, name)
-        print(msg)
+        #print(msg)
         await interaction.response.send_message(f' **【Draw Member & Role】**\n \
             > **Candidates**: \n> {" ".join(all_members_list)}\n\n \
             > **Result**: \n {msg}', ephemeral=False)
