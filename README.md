@@ -91,7 +91,7 @@
 
 [黃子軒 Tzu-Hsuan Huang](https://github.com/Nima-Huang)@Abyss-TeamA (Project Manager/Maintainer)
 
-[許至齊 Zhi-Qi Xu](https://github.com/xkeBANg)@Abyss-TeamA (Author/Maintainer)
-
 [黃丰嘉 Feng-Chia Huang](https://github.com/bessyhuang)@Abyss-TeamA (Author/Maintainer)
+
+[許至齊 Zhi-Qi Xu](https://github.com/xkeBANg)@Abyss-TeamA (Author/Maintainer)
 
