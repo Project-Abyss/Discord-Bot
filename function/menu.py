@@ -25,7 +25,7 @@ class Select(discord.ui.Select):
             discord.SelectOption(label="遺忘書目",emoji="6️⃣",description="難度、URL、概述、領域"),
             discord.SelectOption(label="FaceBook 貼文發表",emoji="7️⃣",description="時間")           
         ]
-        super().__init__(placeholder="Choose an announcement template.",max_values=1,min_values=1,options=options)
+        super().__init__(placeholder="Choose an announcement template or tool.",max_values=1,min_values=1,options=options)
     # callback
     async def callback(self, interaction: discord.Interaction):
         user = interaction.user
