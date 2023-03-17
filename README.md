@@ -85,7 +85,14 @@
 針對抽籤小工具，本團隊提供「 User Interface 」與「 Command 」兩種模式，提供予使用者選擇。
 * 「 User Interface 模式 」合併了**指定成員**和**身份組**兩種抽籤方式，並且藉由圖形化介面提供使用者輸入提示。
 * 「 Command 模式 」除了允許使用者**查詢頻道內的成員資訊**，還能夠依據**指定成員**、**身份組**以及**指定成員或身份組**三種指令模式進行抽籤，以下詳述之。
-### Command
+
+### 1. User Interface Mode
+```
+!menu
+```
+<img src="https://user-images.githubusercontent.com/42068007/225680528-28a1ab55-ed66-434c-81d8-391cd30cecf8.png" width="500" height="400"> <img src="https://user-images.githubusercontent.com/42068007/225680846-d1127d83-5bae-455a-b30d-0680b0e6ad5e.png" width="500" height="400"> <img src="https://user-images.githubusercontent.com/42068007/225680890-c3281432-26f9-419b-a687-23e362db24ff.png" width="500" height="400"> <img src="https://user-images.githubusercontent.com/42068007/225680939-c3d65112-0187-4e84-b412-2406e38d60fc.png" width="500" height="350">
+
+### 2. Command Mode
 #### 頻道內的成員資訊
 ```
     說明：查看頻道內成員的姓名與人數（不包括機器人）。
@@ -113,13 +120,8 @@
     【 範例：!mix [欲抽人數] @身份組1 @成員1 @成員2 @身份組2 @身份組3 @成員3 】
     【 範例：!mix 2 @RD @bessyhuang @PM 】
 ```
-### User Interface
-```
-!menu
-```
 
-<img src="https://user-images.githubusercontent.com/42068007/225680528-28a1ab55-ed66-434c-81d8-391cd30cecf8.png" width="500" height="400"> <img src="https://user-images.githubusercontent.com/42068007/225680846-d1127d83-5bae-455a-b30d-0680b0e6ad5e.png" width="500" height="400"> <img src="https://user-images.githubusercontent.com/42068007/225680890-c3281432-26f9-419b-a687-23e362db24ff.png" width="500" height="400"> <img src="https://user-images.githubusercontent.com/42068007/225680939-c3d65112-0187-4e84-b412-2406e38d60fc.png" width="500" height="350">
-
+---
 ## 投票
 ### Command
 此功能提供使用者針對不同議題進行投票表決，並分為**單票制**和**多票制**兩種投票制度，以下詳述之。
