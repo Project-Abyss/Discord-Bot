@@ -68,7 +68,7 @@ class Menu(commands.Cog):
 
     @commands.command()
     async def menu(self, ctx):
-        await ctx.send("Select announcement",view=SelectView(), delete_after=int(self.sec))
+        message = await ctx.send("Select announcement",view=SelectView(), delete_after=int(self.sec))
         await ctx.message.delete()
 
     @commands.command()
