@@ -117,10 +117,8 @@
 ```
 !menu
 ```
-![image](https://user-images.githubusercontent.com/42068007/225680528-28a1ab55-ed66-434c-81d8-391cd30cecf8.png)
-![image](https://user-images.githubusercontent.com/42068007/225680846-d1127d83-5bae-455a-b30d-0680b0e6ad5e.png)
-![image](https://user-images.githubusercontent.com/42068007/225680890-c3281432-26f9-419b-a687-23e362db24ff.png)
-![image](https://user-images.githubusercontent.com/42068007/225680939-c3d65112-0187-4e84-b412-2406e38d60fc.png)
+
+<img src="https://user-images.githubusercontent.com/42068007/225680528-28a1ab55-ed66-434c-81d8-391cd30cecf8.png" width="500" height="400"> <img src="https://user-images.githubusercontent.com/42068007/225680846-d1127d83-5bae-455a-b30d-0680b0e6ad5e.png" width="500" height="400"> <img src="https://user-images.githubusercontent.com/42068007/225680890-c3281432-26f9-419b-a687-23e362db24ff.png" width="500" height="400"> <img src="https://user-images.githubusercontent.com/42068007/225680939-c3d65112-0187-4e84-b412-2406e38d60fc.png" width="500" height="350">
 
 ## 投票
 ### Command
