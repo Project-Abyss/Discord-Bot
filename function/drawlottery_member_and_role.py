@@ -29,10 +29,9 @@ class draw_member_and_role(discord.ui.Modal, title ='Draw Member & Role'):
         msg = ""
         for i, name in enumerate(result):
             msg += "> 第 {} 個： {}\n".format(i+1, name)
-        #print(msg)
         await interaction.response.send_message(f' **【Draw Member & Role】**\n \
-            > **Candidates**: \n> {" ".join(all_members_list)}\n\n \
-            > **Result**: \n {msg}', ephemeral=False)
+            > **參與抽籤成員** \n> {" ".join(all_members_list)}\n\n \
+            > **公佈中籤名單**: \n {msg}', ephemeral=False)
 
 class Modal_draw_member_and_role(commands.Cog, draw_member_and_role):
     def __init__(self, bot):

@@ -78,11 +78,14 @@ class DrawLottery(commands.Cog):
                 user_name = discord.utils.get(ctx.guild.members, id=eval(user_id))
                 if user_name.mention not in all_members_list:
                     all_members_list.append(user_name.mention)
-
-        await ctx.send(f'參與抽籤的成員：{" ".join(all_members_list)}')
         
         result = random.sample(all_members_list, k=amount)
-        await ctx.send(f'公佈中籤名單：{" ".join(result)}')
+        msg = ""
+        for i, name in enumerate(result):
+            msg += "> 第 {} 個： {}\n".format(i+1, name)
+        await ctx.send(f' **【Draw Member & Role】**\n \
+            > **參與抽籤成員** \n> {" ".join(all_members_list)}\n\n \
+            > **公佈中籤名單** \n {msg}', ephemeral=False)
 
 async def setup(bot):
     await bot.add_cog(DrawLottery(bot))
