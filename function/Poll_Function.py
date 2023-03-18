@@ -48,7 +48,10 @@ class Poll_Function(commands.Cog):
             dateDelta = dateLimit - todayDate
             timedelta = timeLimit - todayTime
             timeUntilTheEndOfThePoll = (dateDelta.days*24*60*60) + (timedelta.seconds)
-            await asyncio.sleep(timeUntilTheEndOfThePoll)
+            if timeUntilTheEndOfThePoll > 0:
+                await asyncio.sleep(timeUntilTheEndOfThePoll)
+            else:
+                await ctx.channel.send("You can not poll in past!")
 
             newmsg = await ctx.fetch_message(msg.id)
             reactionResult = []
@@ -106,7 +109,10 @@ class Poll_Function(commands.Cog):
             dateDelta = dateLimit - todayDate
             timedelta = timeLimit - todayTime
             timeUntilTheEndOfThePoll = (dateDelta.days*24*60*60) + (timedelta.seconds)
-            await asyncio.sleep(timeUntilTheEndOfThePoll)
+            if timeUntilTheEndOfThePoll > 0:
+                await asyncio.sleep(timeUntilTheEndOfThePoll)
+            else:
+                await ctx.channel.send("You can not poll in past!")
 
             newmsg = await ctx.fetch_message(msg.id)
             reactionResult = []
