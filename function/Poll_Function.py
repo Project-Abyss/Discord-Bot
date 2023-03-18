@@ -23,8 +23,19 @@ class Poll_Function(commands.Cog):
 
     @commands.command(name='SingleAnswer', brief="\n\t單票制投票\n\t【範例：SingleAnswer 投票標題 截止日期 截止時刻 選項】")
     async def SingleAnswer(self, ctx, descriptionMessage: str, dateLimit: str, timeLimit: str, *options):
+        dateLimit = datetime.strptime(dateLimit, "%Y-%m-%d")
+        timeLimit = datetime.strptime(timeLimit, "%H:%M:%S")
+        todayDateAndTime = datetime.today().strftime("%Y-%m-%d %H:%M:%S")
+        todayDateAndTime = str(todayDateAndTime).split()
+        todayDate = datetime.strptime(todayDateAndTime[0], "%Y-%m-%d")
+        todayTime = datetime.strptime(todayDateAndTime[1], "%H:%M:%S")
+        dateDelta = dateLimit - todayDate
+        timedelta = timeLimit - todayTime
+        timeUntilTheEndOfThePoll = (dateDelta.days*24*60*60) + (timedelta.seconds)
         if len(options) > 10:
             await ctx.channel.send("The maximum of options are 10!")
+        elif (dateLimit<todayDate) or (timeLimit<todayTime):
+            await ctx.channel.send("You can not poll in past!")
         else:
             emb = discord.Embed(title=f" POLL: {descriptionMessage}", color=ctx.author.color, timestamp=datetime.today())
             emb.set_footer(text=f"Poll by {ctx.author.name}")
@@ -39,19 +50,7 @@ class Poll_Function(commands.Cog):
 
             self.polls.append((msg.channel.id, msg.id))
 
-            dateLimit = datetime.strptime(dateLimit, "%Y-%m-%d")
-            timeLimit = datetime.strptime(timeLimit, "%H:%M:%S")
-            todayDateAndTime = datetime.today().strftime("%Y-%m-%d %H:%M:%S")
-            todayDateAndTime = str(todayDateAndTime).split()
-            todayDate = datetime.strptime(todayDateAndTime[0], "%Y-%m-%d")
-            todayTime = datetime.strptime(todayDateAndTime[1], "%H:%M:%S")
-            dateDelta = dateLimit - todayDate
-            timedelta = timeLimit - todayTime
-            timeUntilTheEndOfThePoll = (dateDelta.days*24*60*60) + (timedelta.seconds)
-            if timeUntilTheEndOfThePoll > 0:
-                await asyncio.sleep(timeUntilTheEndOfThePoll)
-            else:
-                await ctx.channel.send("You can not poll in past!")
+            await asyncio.sleep(timeUntilTheEndOfThePoll)
 
             newmsg = await ctx.fetch_message(msg.id)
             reactionResult = []
@@ -71,8 +70,8 @@ class Poll_Function(commands.Cog):
                     singlePollResult.append(item.optionDescription)
             singlePollResult = " ".join(str(i) for i in singlePollResult)
             
-            emb = discord.Embed(title=f" POLL: {descriptionMessage}", description=f"最高票數：{singlePollResult}", color=ctx.author.color, timestamp=datetime.today())
-            await newmsg.edit(embed=emb)
+            await ctx.channel.send(f"> **POLL: {descriptionMessage}**\n> 票數排行榜\n> -----------\n> 最高票數：{singlePollResult}")
+
 
     @commands.Cog.listener()
     async def on_raw_reaction_add(self, payload):
@@ -86,8 +85,19 @@ class Poll_Function(commands.Cog):
 
     @commands.command(name='MultiAnswer', brief="\n\t多票制投票\n\t【範例：MultiAnswer 投票標題 截止日期 截止時刻 選項】")
     async def MultiAnswer(self, ctx, descriptionMessage: str, dateLimit: str, timeLimit: str, *options):
+        dateLimit = datetime.strptime(dateLimit, "%Y-%m-%d")
+        timeLimit = datetime.strptime(timeLimit, "%H:%M:%S")
+        todayDateAndTime = datetime.today().strftime("%Y-%m-%d %H:%M:%S")
+        todayDateAndTime = str(todayDateAndTime).split()
+        todayDate = datetime.strptime(todayDateAndTime[0], "%Y-%m-%d")
+        todayTime = datetime.strptime(todayDateAndTime[1], "%H:%M:%S")
+        dateDelta = dateLimit - todayDate
+        timedelta = timeLimit - todayTime
+        timeUntilTheEndOfThePoll = (dateDelta.days*24*60*60) + (timedelta.seconds)        
         if len(options) > 10:
             await ctx.channel.send("The maximum of options are 10!")
+        elif (dateLimit<todayDate) or (timeLimit<todayTime):
+            await ctx.channel.send("You can not poll in past!")
         else:
             emb = discord.Embed(title=f" POLL: {descriptionMessage}", color=ctx.author.color, timestamp=datetime.today())
             emb.set_footer(text=f"Poll by {ctx.author.name}")
@@ -100,19 +110,7 @@ class Poll_Function(commands.Cog):
             for numberEmoji in numbersIcon[:len(options)]:
                 await msg.add_reaction(numberEmoji)
 
-            dateLimit = datetime.strptime(dateLimit, "%Y-%m-%d")
-            timeLimit = datetime.strptime(timeLimit, "%H:%M:%S")
-            todayDateAndTime = datetime.today().strftime("%Y-%m-%d %H:%M:%S")
-            todayDateAndTime = str(todayDateAndTime).split()
-            todayDate = datetime.strptime(todayDateAndTime[0], "%Y-%m-%d")
-            todayTime = datetime.strptime(todayDateAndTime[1], "%H:%M:%S")
-            dateDelta = dateLimit - todayDate
-            timedelta = timeLimit - todayTime
-            timeUntilTheEndOfThePoll = (dateDelta.days*24*60*60) + (timedelta.seconds)
-            if timeUntilTheEndOfThePoll > 0:
-                await asyncio.sleep(timeUntilTheEndOfThePoll)
-            else:
-                await ctx.channel.send("You can not poll in past!")
+            await asyncio.sleep(timeUntilTheEndOfThePoll)
 
             newmsg = await ctx.fetch_message(msg.id)
             reactionResult = []
@@ -132,6 +130,8 @@ class Poll_Function(commands.Cog):
                 await ctx.channel.send(f"> ❖ 第 {pollResultRanking+1} 名｜" 
                                        + "**" + str(reactionResult[pollResultRanking].optionDescription) + "**｜" 
                                        + str(reactionResult[pollResultRanking].optionPollResult) + " 票\n")
+
+
 
 async def setup(bot):
     await bot.add_cog(Poll_Function(bot))
