@@ -70,7 +70,7 @@ class Poll_Function(commands.Cog):
                     singlePollResult.append(item.optionDescription)
             singlePollResult = " ".join(str(i) for i in singlePollResult)
             
-            await ctx.channel.send(f"> **POLL: {descriptionMessage}**\n> 票數排行榜\n> -----------\n> 最高票數：{singlePollResult}")
+            await msg.reply(f"> **POLL: {descriptionMessage}**\n> 票數排行榜\n> -----------\n> 最高票數：{singlePollResult}")
 
 
     @commands.Cog.listener()
@@ -127,7 +127,7 @@ class Poll_Function(commands.Cog):
             await ctx.channel.send(f"> **POLL: {descriptionMessage}**\n> 票數排行榜\n> -----------\n")
             pollResultRanking = 0
             for pollResultRanking in range(len(options)):
-                await ctx.channel.send(f"> ❖ 第 {pollResultRanking+1} 名｜" 
+                await msg.reply(f"> ❖ 第 {pollResultRanking+1} 名｜" 
                                        + "**" + str(reactionResult[pollResultRanking].optionDescription) + "**｜" 
                                        + str(reactionResult[pollResultRanking].optionPollResult) + " 票\n")
 
